@@ -1,6 +1,5 @@
 # Project_AESminiSoC — Design Verification (UVM)
-Repositório dedicado ao desenvolvimento e validação do ambiente de **Design Verification (DV)** para o **MiniSoC AES**, desenvolvido no âmbito do programa de **Residência em Microeletrônica (CI-Expert — Polo UFCG)**.
----
+
 ## 📢 Atualizações Recentes
 1. **Diagrama de Arquitetura do Testbench (`tb_architecture.png`)**:
    * Diagrama completo ilustrando a topologia do ambiente **UVM (Universal Verification Methodology)**.
