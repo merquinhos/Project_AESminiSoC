@@ -1,0 +1,8 @@
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_aes/minisoc_aes_dp.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_aes/minisoc_aes_key_exp.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_aes/minisoc_aes_top.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_mem/minisoc_memory.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_pll/minisoc_pll_mock.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_spi/minisoc_spi.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/rtl/minisoc_top.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/frontend/tb/minisoc_top_tb.sv

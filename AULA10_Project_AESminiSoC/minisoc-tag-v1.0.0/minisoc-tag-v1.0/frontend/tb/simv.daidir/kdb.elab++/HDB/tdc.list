@@ -1,0 +1,8 @@
+../rtl/minisoc_aes/minisoc_aes_dp.sv
+../rtl/minisoc_aes/minisoc_aes_key_exp.sv
+../rtl/minisoc_aes/minisoc_aes_top.sv
+../rtl/minisoc_mem/minisoc_memory.sv
+../rtl/minisoc_pll/minisoc_pll_mock.sv
+../rtl/minisoc_spi/minisoc_spi.sv
+../rtl/minisoc_top.sv
+minisoc_top_tb.sv
