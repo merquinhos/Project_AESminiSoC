@@ -1,7 +1,7 @@
 # Project_AESminiSoC — Design Verification (UVM)
 
 ## 📢 Atualizações Recentes (Destaques para Avaliação)
-Prezado professor/avaliador, os seguintes artefatos, entregáveis e desenvolvimentos de código foram atualizados no repositório:
+Os seguintes artefatos, entregáveis e desenvolvimentos de código foram atualizados no repositório:
 1. **Diagrama de Arquitetura do Testbench (`tb_architecture.png`)**:
    * Diagrama completo ilustrando a topologia do ambiente **UVM (Universal Verification Methodology)**.
    * Apresenta a estruturação dos agentes de verificação (`clk_agent`, `rst_agent`, `spi_agent`, `mem_agent`), conexões via interfaces virtuais (`virtual interfaces`), modelo de referência em C/C++ via DPI-C e o Scoreboard.
