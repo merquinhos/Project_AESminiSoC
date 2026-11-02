@@ -1,0 +1,1 @@
+typedef uvm_sequencer #(rst_item) rst_sequencer;

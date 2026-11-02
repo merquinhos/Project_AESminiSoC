@@ -1,0 +1,1 @@
+typedef uvm_sequencer #(clock_item) clock_sequencer;
