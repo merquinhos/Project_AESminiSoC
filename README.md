@@ -1,8 +1,8 @@
 # Project_AESminiSoC — Design Verification (UVM)
-Repositório dedicado ao desenvolvimento, arquitetura e execução do ambiente de **Design Verification (DV)** para o **MiniSoC AES**, desenvolvido no âmbito do programa de **Residência em Microeletrônica (CI-Expert — Polo UFCG)**.
+Programa de **Residência em Microeletrônica (CI-Expert — Polo UFCG)**.
 ---
 ## 📢 Atualizações Recentes
-Prezado professor/avaliador, os seguintes artefatos, códigos e infraestruturas de teste foram integrados e estão disponíveis no repositório:
+Os seguintes artefatos, códigos e infraestruturas de teste foram integrados e estão disponíveis no repositório:
 1. **Infraestrutura de Bring-up & Smoke Test UVM Concluída (`minisoc_smoke_test`)**:
    * **`clock_agent` Completo**:
      * Geração contínua e parametrizada dos dois domínios externos do SoC: referência de **2 GHz** (`clk`) e barramento de memória de **100 MHz** (`mem_clk`).
@@ -11,14 +11,14 @@ Prezado professor/avaliador, os seguintes artefatos, códigos e infraestruturas 
      * Geração e controle de reset global determinístico ativo em nível baixo (`rst_n`).
      * Composto por: `rst_if.sv`, `rst_item.sv`, `rst_agent_config.sv`, `rst_driver.sv`, `rst_sequencer.sv` e `rst_pkg.sv`.
    * **Sequenciamento UVM (`minisoc_reset_seq.sv`)**:
-     * Sequence responsável por orquestrar a aplicação do pulso de reset (25 ns) e sua liberação coordenada com as bordas de clock.
+     * Sequence responsável por orquestrar a aplicação do pulso de reset (20 ns) e sua liberação coordenada com as bordas de clock.
    * **Environment Integrado (`minisoc_env.sv`)**:
      * `uvm_env` integrando ativamente o `clock_agent` e o `rst_agent`.
    * **Suíte de Testes Inicial (`minisoc_base_test.sv` e `minisoc_smoke_test.sv`)**:
      * Execução com sucesso do *Smoke Test*, validando a estabilização do clock de 2 GHz, liberação limpa do reset (`rst_n = 1`) e integridade dos tie-offs de hardware no `top_tb.sv`.
 2. **Diagrama de Arquitetura do Testbench (`tb_architecture.png`)**:
    * Diagrama esquemático completo exibindo a topologia do testbench UVM, suas interfaces virtuais e camadas de checagem.
-   * Localização: Raiz do repositório (`/tb_architecture.png`).
+   * Localização: Raiz do repositório (`/tb_architecture.png`) (ALTERAR).
 3. **Plano de Verificação Preenchido (`Verification Plan`)**:
    * Mapeamento formal de requisitos, cenários direcionados, testes de injeção de erro, cenários DITL (*Day In The Life*) e modelo de *Cross Coverage*.
    * **Arquivo principal**: `CI-Expert_Fase2_Verification_Plan.docx` (e respectivo backup).
