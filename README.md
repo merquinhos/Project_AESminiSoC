@@ -1,7 +1,7 @@
 # Project_AESminiSoC — Design Verification (UVM)
 Repositório dedicado ao desenvolvimento, arquitetura e execução do ambiente de **Design Verification (DV)** para o **MiniSoC AES**, desenvolvido no âmbito do programa de **Residência em Microeletrônica (CI-Expert — Polo UFCG)**.
 ---
-## 📢 Atualizações Recentes (Destaques para Avaliação)
+## 📢 Atualizações Recentes
 Prezado professor/avaliador, os seguintes artefatos, códigos e infraestruturas de teste foram integrados e estão disponíveis no repositório:
 1. **Infraestrutura de Bring-up & Smoke Test UVM Concluída (`minisoc_smoke_test`)**:
    * **`clock_agent` Completo**:
