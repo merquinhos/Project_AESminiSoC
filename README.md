@@ -1,48 +1,53 @@
 # Project_AESminiSoC — Design Verification (UVM)
-
+Repositório dedicado ao desenvolvimento, arquitetura e execução do ambiente de **Design Verification (DV)** para o **MiniSoC AES**, desenvolvido no âmbito do programa de **Residência em Microeletrônica (CI-Expert — Polo UFCG)**.
+---
 ## 📢 Atualizações Recentes (Destaques para Avaliação)
-Os seguintes artefatos, entregáveis e desenvolvimentos de código foram atualizados no repositório:
-1. **Diagrama de Arquitetura do Testbench (`tb_architecture.png`)**:
-   * Diagrama completo ilustrando a topologia do ambiente **UVM (Universal Verification Methodology)**.
-   * Apresenta a estruturação dos agentes de verificação (`clk_agent`, `rst_agent`, `spi_agent`, `mem_agent`), conexões via interfaces virtuais (`virtual interfaces`), modelo de referência em C/C++ via DPI-C e o Scoreboard.
+Prezado professor/avaliador, os seguintes artefatos, códigos e infraestruturas de teste foram integrados e estão disponíveis no repositório:
+1. **Infraestrutura de Bring-up & Smoke Test UVM Concluída (`minisoc_smoke_test`)**:
+   * **`clock_agent` Completo**:
+     * Geração contínua e parametrizada dos dois domínios externos do SoC: referência de **2 GHz** (`clk`) e barramento de memória de **100 MHz** (`mem_clk`).
+     * Composto por: `clock_if.sv`, `clock_item.sv`, `clock_agent_config.sv`, `clock_driver.sv`, `clock_monitor.sv`, `clock_sequencer.sv` e `clock_pkg.sv`.
+   * **`rst_agent` Completo**:
+     * Geração e controle de reset global determinístico ativo em nível baixo (`rst_n`).
+     * Composto por: `rst_if.sv`, `rst_item.sv`, `rst_agent_config.sv`, `rst_driver.sv`, `rst_sequencer.sv` e `rst_pkg.sv`.
+   * **Sequenciamento UVM (`minisoc_reset_seq.sv`)**:
+     * Sequence responsável por orquestrar a aplicação do pulso de reset (25 ns) e sua liberação coordenada com as bordas de clock.
+   * **Environment Integrado (`minisoc_env.sv`)**:
+     * `uvm_env` integrando ativamente o `clock_agent` e o `rst_agent`.
+   * **Suíte de Testes Inicial (`minisoc_base_test.sv` e `minisoc_smoke_test.sv`)**:
+     * Execução com sucesso do *Smoke Test*, validando a estabilização do clock de 2 GHz, liberação limpa do reset (`rst_n = 1`) e integridade dos tie-offs de hardware no `top_tb.sv`.
+2. **Diagrama de Arquitetura do Testbench (`tb_architecture.png`)**:
+   * Diagrama esquemático completo exibindo a topologia do testbench UVM, suas interfaces virtuais e camadas de checagem.
    * Localização: Raiz do repositório (`/tb_architecture.png`).
-2. **Plano de Verificação Preenchido (`Verification Plan`)**:
-   * Documento formal de especificação do plano de teste contendo mapeamento de requisitos, funcionalidades a verificar, definição dos cenários de teste, métricas de cobertura (código e funcional) e matriz de rastreabilidade.
-   * **Arquivo principal**: `CI-Expert_Fase2_Verification_Plan.docx`
-   * **Cópia de segurança**: `CI-Expert_Fase2_Verification_Plan_BACKUP.docx`
+3. **Plano de Verificação Preenchido (`Verification Plan`)**:
+   * Mapeamento formal de requisitos, cenários direcionados, testes de injeção de erro, cenários DITL (*Day In The Life*) e modelo de *Cross Coverage*.
+   * **Arquivo principal**: `CI-Expert_Fase2_Verification_Plan.docx` (e respectivo backup).
    * Localização: `AULA10_Project_AESminiSoC/Deliverables/`
-3. **Implementação do Agente de Clock (`clock_agent`)**:
-   * Estruturação inicial do agente UVM responsável por gerar e coordenar os domínios de clock do sistema:
-     * **`clock_if.sv`**: Interface física do SystemVerilog contendo as definições dos clocks do SoC — a referência de **2 GHz** (`clk`) e o clock externo da memória de **100 MHz** (`mem_clk`).
-     * **`clock_item.sv`**: Classe de transação UVM (`uvm_sequence_item`) para parametrização dos períodos, frequências e ciclo de trabalho (*duty cycle*).
-     * **`clock_driver.sv`**: Driver UVM (`uvm_driver`) responsável por receber as configurações e oscilar fisicamente os pinos da interface virtual (`vif.clk` e `vif.mem_clk`).
-   * Localização: `.../verif/tb/agents/clock_agent/`
 ---
 ## 🏛️ Arquitetura do Ambiente de Verificação (UVM)
-Abaixo está a representação estrutural do testbench desenvolvido para validação do DUT (`minisoc_top`):
+Abaixo está a representação estrutural da topologia desenvolvida para verificação do DUT (`minisoc_top`):
 ![Arquitetura do Testbench](tb_architecture.png)
-### Principais Componentes do Testbench:
-* **Clock Agent (`clk_agent`)**: Responsável por alimentar com precisão os dois domínios de clock concorrentes do sistema (`clk` de 2 GHz e `mem_clk` de 100 MHz).
-* **Reset Agent (`rst_agent`)**: Gera e controla o sequenciamento de reset global ativo em nível baixo (`rst_n`).
-* **SPI UVM Agent (Master)**: Responsável por enviar estímulos seriais ao front-end SPI (Modo 0, 40 bits), programando chaves, IV, modos e monitorando registradores de status via *polling*.
-* **Memory UVM Agent**: Gerencia as operações de escrita de texto claro (*plain text*) e leitura de texto cifrado (*cipher text*) na interface `MEMORY DATA`.
-* **Reference Model (Predictor)**: Implementação *golden model* do algoritmo AES-128 integrada via SystemVerilog DPI-C para previsão dos dados esperados.
-* **Scoreboard**: Comparação ciclo a ciclo e transação por transação entre o resultado produzido pelo hardware e o modelo de referência.
+### Estrutura dos Componentes UVM:
+* **Clock Agent (`clk_agt`)**: Alimenta com precisão os dois domínios de clock concorrentes (`clk` de 2 GHz e `mem_clk` de 100 MHz) com monitoramento ativo via `clock_monitor`.
+* **Reset Agent (`rst_agt`)**: Aplica o sequenciamento de reset global e permite a injeção de *warm resets* durante testes avançados.
+* **Top Environment (`minisoc_env`)**: Agrupa os agentes de protocolo e conecta os canais de comunicação com a camada de análise.
+* **Testes & Sequências**: Testes estruturados hierarquicamente a partir de `minisoc_base_test`, com sequências orquestradas para estímulos controlados.
 ---
 ## 🔍 Sobre o DUT (MiniSoC AES)
-O **MiniSoC AES** é um sistema digital projetado para acelerar operações de criptografia e decriptação simétrica baseadas no algoritmo **AES-128** (NIST FIPS 197), composto por quatro blocos fundamentais:
-* **SPI Front-End (`minisoc_spi`)**: Interface serial e banco de registradores para controle, configuração e telemetria (sempre alimentado pelo clock *always-on* de 2 GHz).
-* **PLL RTL Mock (`minisoc_pll_mock`)**: Sintetizador/divisor de clock dinâmico com suporte a frequências de 250 MHz a 2 GHz e emulação de tempo de *lock*.
-* **AES Engine (`minisoc_aes`)**: Datapath com suporte a processamento de 1 a 256 blocos *in-place* e compatibilidade com 6 modos de cifra (**ECB, CBC, PCBC, CFB, OFB e CTR**).
-* **Memória Compartilhada (`minisoc_memory`)**: SRAM síncrona single-port de 1024 palavras de 32 bits (4 KB) com arbitragem entre o usuário externo e o motor AES.
+O **MiniSoC AES** é um micro-SoC digital projetado para acelerar operações de criptografia e decriptação simétrica baseadas no algoritmo **AES-128** (NIST FIPS 197):
+* **Separação de Planos**: Plano de controle seriais via SPI (4 fios, $\le 25\text{ MHz}$) e plano de dados em alta velocidade via interface paralela de memória (32 bits, 100 MHz).
+* **SPI Front-End (`minisoc_spi`)**: Banco de registradores com operação em domínio *always-on* (2 GHz) e intertravamento de escrita em hardware durante `AES_BUSY`.
+* **PLL RTL Mock (`minisoc_pll_mock`)**: Divisores programáveis (/1, /2, /4 e /8) com modelo de atraso de *lock* via LFSR e liberação de clock livre de *glitches*.
+* **Memória Compartilhada (`minisoc_memory`)**: SRAM síncrona single-port de 1024 palavras $\times$ 32 bits (4 KB) operando sob exclusão mútua (`MEM_SEL_AES`).
+* **AES Engine (`minisoc_aes`)**: Datapath com processamento *in-place* de até 256 blocos nos modos ECB, CBC, PCBC, CFB, OFB e CTR.
 ---
-## 📂 Estrutura do Repositório
+## 📁 Estrutura do Repositório
 ```text
 Project_AESminiSoC/
-├── README.md                                  # Documentação principal
+├── README.md                                  # Documentação principal do projeto
 ├── tb_architecture.png                        # Diagrama da arquitetura do Testbench UVM
 └── AULA10_Project_AESminiSoC/
-    ├── Deliverables/                          # Documentação e Entregáveis
+    ├── Deliverables/                          # Documentação formal e entregáveis
     │   ├── CI-Expert_Fase2_Verification_Plan.docx        # Plano de verificação preenchido
     │   ├── CI-Expert_Fase2_Verification_Plan_BACKUP.docx # Backup do plano
     │   └── ...
@@ -50,13 +55,34 @@ Project_AESminiSoC/
     └── minisoc-tag-v1.0.0/                    # Código-fonte
         └── minisoc-tag-v1.0/
             ├── frontend/rtl/                  # RTL do DUT (minisoc_top, aes, spi, pll, mem)
-            └── verif/tb/                      # Ambiente UVM
-                ├── agents/
-                │   └── clock_agent/           # Agente de Clock UVM
-                │       ├── clock_if.sv        # Interface física de clocks (2 GHz e 100 MHz)
-                │       ├── clock_item.sv      # Transação de clock (uvm_sequence_item)
-                │       └── clock_driver.sv    # Driver de clock (uvm_driver)
+            └── verif/tb/                      # Ambiente de Verificação UVM
+                ├── agents/                    # Agentes UVM
+                │   ├── clock_agent/           # Agente de Clock UVM
+                │   │   ├── clock_if.sv        # Interface física (2 GHz e 100 MHz)
+                │   │   ├── clock_item.sv      # Transação de clock (uvm_sequence_item)
+                │   │   ├── clock_agent_config.sv # Configuração do agente (Active/Passive)
+                │   │   ├── clock_driver.sv    # Driver de oscilação contínua dos clocks
+                │   │   ├── clock_monitor.sv   # Monitor de verificação de período ($realtime)
+                │   │   ├── clock_sequencer.sv # Sequencer de clock
+                │   │   └── clock_pkg.sv       # Package do clock_agent
+                │   └── rst_agent/             # Agente de Reset UVM
+                │       ├── rst_if.sv          # Interface física de reset (rst_n)
+                │       ├── rst_item.sv        # Transação de reset
+                │       ├── rst_agent_config.sv# Configuração do rst_agent
+                │       ├── rst_driver.sv      # Driver de acionamento do reset
+                │       ├── rst_sequencer.sv   # Sequencer de reset
+                │       └── rst_pkg.sv         # Package do rst_agent
                 ├── env/                       # Environment UVM
-                ├── refmod/                    # Modelo de referência C/C++ (DPI-C)
-                ├── tests/                     # Casos e sequências de teste
-                └── top_tb.sv                  # Top-level de simulação
+                │   ├── minisoc_env.sv         # Instanciação e amarração dos agentes
+                │   └── env_pkg.sv             # Package do environment
+                ├── sequences/                 # Biblioteca de Sequências UVM
+                │   ├── minisoc_reset_seq.sv   # Sequência de inicialização e pulso de reset
+                │   └── seq_pkg.sv             # Package de sequências
+                ├── tests/                     # Suíte de Testes UVM
+                │   ├── minisoc_base_test.sv   # Teste base com configuração de infraestrutura
+                │   ├── minisoc_smoke_test.sv  # Smoke test de validação de Clock & Reset
+                │   └── test_pkg.sv            # Package de testes
+                ├── refmod/                    # Golden Model C/C++ (DPI-C)
+                ├── top_assertions.sv          # Asserções SVA de protocolo
+                ├── top_tb.sv                  # Top-level de simulação UVM com tie-offs
+                └── Makefile                   # Scripts de compilação e execução
