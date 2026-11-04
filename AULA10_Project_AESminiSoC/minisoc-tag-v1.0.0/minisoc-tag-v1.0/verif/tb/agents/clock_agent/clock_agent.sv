@@ -23,7 +23,7 @@ if (!uvm_config_db#(clock_agent_config)::get(this, "", "cfg", cfg)) begin
 monitor = clock_monitor::type_id::create("monitor", this);
 
 if (cfg.is_active == UVM_ACTIVE) begin
-    driver    = clock_driver::type_id::create("driver", this);
+    driver = clock_driver::type_id::create("driver", this);
     sequencer = clock_sequencer::type_id::create("sequencer", this);
     end
 endfunction

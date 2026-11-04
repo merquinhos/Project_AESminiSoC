@@ -19,13 +19,13 @@ module top_tb;
   // --------------------------------------------------------------------------
   // Sinais de tie-off para SPI e Memória (antes da integração dos agentes SPI e MEM)
   // --------------------------------------------------------------------------
-  logic        spi_sclk;
-  logic        spi_cs_n;
-  logic        spi_mosi;
-  wire         spi_miso;
+  logic spi_sclk;
+  logic spi_cs_n;
+  logic spi_mosi;
+  wire spi_miso;
 
   logic [31:0] mem_i_data;
-  logic        mem_i_wr_en;
+  logic mem_i_wr_en;
   logic [9:0]  mem_i_addr;
   wire  [31:0] mem_o_data;
 
@@ -64,7 +64,7 @@ module top_tb;
     uvm_config_db#(virtual clock_if)::set(null, "*.clk_agt.*", "vif", clk_if);
     uvm_config_db#(virtual rst_if)::set(null, "*.rst_agt.*",   "vif", rst_if);
 
-    // Habilita dump de ondas se o usuário pedir via plusarg (+DUMP)
+    // Habilita dump de ondas 
     if ($test$plusargs("DUMP")) begin
       $dumpfile("dump.vcd");
       $dumpvars(0, top_tb);
