@@ -1,4 +1,4 @@
-662      
+676      
 0 uvm_macros.svh
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/systemverilog/uvm_macros.svh
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/vcs/uvm_macros.svh
@@ -622,6 +622,12 @@
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/verdi/rst_driver.sv
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/rst_driver.sv
 0 ./agents/clock_agent/rst_driver.sv
+0 rst_monitor.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/systemverilog/rst_monitor.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/vcs/rst_monitor.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/verdi/rst_monitor.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/rst_monitor.sv
+0 ./agents/clock_agent/rst_monitor.sv
 0 rst_agent.sv
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/systemverilog/rst_agent.sv
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/vcs/rst_agent.sv
@@ -635,6 +641,14 @@
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/minisoc_env.sv
 0 ./agents/clock_agent/minisoc_env.sv
 0 ./agents/rst_agent/minisoc_env.sv
+0 minisoc_clock_seq.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/systemverilog/minisoc_clock_seq.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/vcs/minisoc_clock_seq.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/verdi/minisoc_clock_seq.sv
+0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/minisoc_clock_seq.sv
+0 ./agents/clock_agent/minisoc_clock_seq.sv
+0 ./agents/rst_agent/minisoc_clock_seq.sv
+0 ./env/minisoc_clock_seq.sv
 0 minisoc_reset_seq.sv
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/systemverilog/minisoc_reset_seq.sv
 0 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/vcs/minisoc_reset_seq.sv
@@ -730,13 +744,13 @@ uvm
 ./top_tb.sv
 98
 which_declare=declare -f
-XDG_SESSION_ID=4087
+XDG_SESSION_ID=128
 XDG_RUNTIME_DIR=/run/user/1037
 XDG_DATA_DIRS=/home/joao.farias/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 XA_HOMEDIR=/Tools/synopsys/xa/X-2025.06-SP2
 WV_HOMEDIR=/Tools/synopsys/wv/X-2025.06-SP2
 VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
-VSCODE_IPC_HOOK_CLI=/run/user/1037/vscode-ipc-f1cb5083-f32d-48cb-bc42-5ce2969ffd84.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1037/vscode-ipc-a7b91863-537a-4552-9306-27adad92e411.sock
 VSCODE_GIT_IPC_HANDLE=/run/user/1037/vscode-git-8762499bbb.sock
 VSCODE_GIT_ASKPASS_NODE=/home/joao.farias/.vscode-server/cli/servers/Stable-7debcd0e2acdea1c52de81bf9ee1620444407dda/server/node
 VSCODE_GIT_ASKPASS_MAIN=/home/joao.farias/.vscode-server/cli/servers/Stable-7debcd0e2acdea1c52de81bf9ee1620444407dda/server/extensions/git/dist/askpass-main.js
@@ -766,8 +780,8 @@ SYN_HOMEDIR=/Tools/synopsys/syn/X-2025.06-SP2
 SYNOPSYS_LC_ROOT=/Tools/synopsys/lc/X-2025.06-SP2
 SYNOPSYS=/Tools/synopsys
 STARRC_HOMEDIR=/Tools/synopsys/starrc/X-2025.06-SP3
-SSH_CONNECTION=179.144.21.147 61599 192.168.13.69 22
-SSH_CLIENT=179.144.21.147 61599 22
+SSH_CONNECTION=179.144.23.119 50587 192.168.13.69 22
+SSH_CLIENT=179.144.23.119 50587 22
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
 SPYGLASS_HOME=/Tools/synopsys/spyglass/X-2025.06-SP2/SPYGLASS_HOME
 SNPS_VERDI_INTERNAL_LP_XML_NEW_FLOW=1
@@ -796,8 +810,8 @@ MODULEPATH_modshare=/usr/share/Modules/modulefiles:2:/etc/modulefiles:2:/usr/sha
 MODULEPATH=/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles
 MILK_HOME=/Tools/synopsys/mw/X-2025.06
 MFLAGS=
-MAKE_TERMOUT=/dev/pts/30
-MAKE_TERMERR=/dev/pts/30
+MAKE_TERMOUT=/dev/pts/21
+MAKE_TERMERR=/dev/pts/21
 MAKELEVEL=1
 MAKEFLAGS=
 LOADEDMODULES=
@@ -829,22 +843,24 @@ BASH_FUNC_ml%%=() {  module ml "$@"_}
 BASH_FUNC__module_raw%%=() {  unset _mlshdbg;_ if [ "${MODULES_SILENT_SHELL_DEBUG:-0}" = '1' ]; then_ case "$-" in _ *v*x*)_ set +vx;_ _mlshdbg='vx'_ ;;_ *v*)_ set +v;_ _mlshdbg='v'_ ;;_ *x*)_ set +x;_ _mlshdbg='x'_ ;;_ *)_ _mlshdbg=''_ ;;_ esac;_ fi;_ unset _mlre _mlIFS;_ if [ -n "${IFS+x}" ]; then_ _mlIFS=$IFS;_ fi;_ IFS=' ';_ for _mlv in ${MODULES_RUN_QUARANTINE:-};_ do_ if [ "${_mlv}" = "${_mlv##*[!A-Za-z0-9_]}" -a "${_mlv}" = "${_mlv#[0-9]}" ]; then_ if [ -n "`eval 'echo ${'$_mlv'+x}'`" ]; then_ _mlre="${_mlre:-}${_mlv}_modquar='`eval 'echo ${'$_mlv'}'`' ";_ fi;_ _mlrv="MODULES_RUNENV_${_mlv}";_ _mlre="${_mlre:-}${_mlv}='`eval 'echo ${'$_mlrv':-}'`' ";_ fi;_ done;_ if [ -n "${_mlre:-}" ]; then_ eval `eval ${_mlre} /usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash '"$@"'`;_ else_ eval `/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash "$@"`;_ fi;_ _mlstatus=$?;_ if [ -n "${_mlIFS+x}" ]; then_ IFS=$_mlIFS;_ else_ unset IFS;_ fi;_ unset _mlre _mlv _mlrv _mlIFS;_ if [ -n "${_mlshdbg:-}" ]; then_ set -$_mlshdbg;_ fi;_ unset _mlshdbg;_ return $_mlstatus_}
 0
 0
-184
-1793586545 ./tests/minisoc_smoke_test.sv
+186
+1794422642 ./tests/minisoc_smoke_test.sv
 1793586545 ./tests/minisoc_base_test.sv
 1793586545 ./sequences/minisoc_reset_seq.sv
+1794422739 ./sequences/minisoc_clock_seq.sv
 1793586545 ./env/minisoc_env.sv
-1793586545 ./agents/rst_agent/rst_agent.sv
-1793586545 ./agents/rst_agent/rst_driver.sv
+1794421155 ./agents/rst_agent/rst_agent.sv
+1794421979 ./agents/rst_agent/rst_monitor.sv
+1794421411 ./agents/rst_agent/rst_driver.sv
 1793586545 ./agents/rst_agent/rst_sequencer.sv
-1793586545 ./agents/rst_agent/rst_agent_config.sv
-1793586545 ./agents/rst_agent/rst_item.sv
-1793586545 ./agents/clock_agent/clock_agent.sv
-1793586545 ./agents/clock_agent/clock_monitor.sv
-1793586545 ./agents/clock_agent/clock_driver.sv
-1793586545 ./agents/clock_agent/clock_sequencer.sv
-1793586545 ./agents/clock_agent/clock_agent_config.sv
-1793586545 ./agents/clock_agent/clock_item.sv
+1794084858 ./agents/rst_agent/rst_agent_config.sv
+1794421440 ./agents/rst_agent/rst_item.sv
+1794423698 ./agents/clock_agent/clock_agent.sv
+1794084838 ./agents/clock_agent/clock_monitor.sv
+1794424119 ./agents/clock_agent/clock_driver.sv
+1794082914 ./agents/clock_agent/clock_sequencer.sv
+1794082943 ./agents/clock_agent/clock_agent_config.sv
+1794081476 ./agents/clock_agent/clock_item.sv
 1764580058 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/verdi/uvm_verdi_pli.svh
 1764232856 /Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/include/verdi_trans_recorder_dpi.svh
 1764580058 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/verdi/uvm_verdi_reg_recording.sv
@@ -993,14 +1009,14 @@ BASH_FUNC__module_raw%%=() {  unset _mlshdbg;_ if [ "${MODULES_SILENT_SHELL_DEBU
 1764580057 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/macros/uvm_version_defines.svh
 1764580059 /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm/uvm_macros.svh
 1764591403 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/packages/snps_msv_nettype_pkg/AN.DB
-1793586545 ./top_tb.sv
+1794424320 ./top_tb.sv
 1793586545 ./tests/test_pkg.sv
-1793586545 ./sequences/seq_pkg.sv
+1794422869 ./sequences/seq_pkg.sv
 1793586545 ./env/env_pkg.sv
-1793586545 ./agents/rst_agent/rst_pkg.sv
-1793586545 ./agents/rst_agent/rst_if.sv
-1793586545 ./agents/clock_agent/clock_pkg.sv
-1793586545 ./agents/clock_agent/clock_if.sv
+1794422137 ./agents/rst_agent/rst_pkg.sv
+1794421423 ./agents/rst_agent/rst_if.sv
+1794082680 ./agents/clock_agent/clock_pkg.sv
+1794084731 ./agents/clock_agent/clock_if.sv
 1790799404 ../../frontend/rtl/minisoc_top.sv
 1790799404 ../../frontend/rtl/minisoc_spi/minisoc_spi.sv
 1790799404 ../../frontend/rtl/minisoc_pll/minisoc_pll_mock.sv
@@ -1021,5 +1037,5 @@ BASH_FUNC__module_raw%%=() {  unset _mlshdbg;_ if [ "${MODULES_SILENT_SHELL_DEBU
 1764576997 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/liberrorinf.so
 1764576990 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libsnpsmalloc.so
 1764576977 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvfs.so
-1793673900 simv.daidir
+1794424347 simv.daidir
 -1 partitionlib

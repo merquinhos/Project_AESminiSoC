@@ -168,10 +168,12 @@
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/agents/rst_agent/rst_driver.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/agents/rst_agent/rst_if.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/agents/rst_agent/rst_item.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/agents/rst_agent/rst_monitor.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/agents/rst_agent/rst_pkg.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/agents/rst_agent/rst_sequencer.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/env/env_pkg.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/env/minisoc_env.sv
+/home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/sequences/minisoc_clock_seq.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/sequences/minisoc_reset_seq.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/sequences/seq_pkg.sv
 /home/joao.farias/aula_10/AULA10_Project_AESminiSoC/minisoc-tag-v1.0.0/minisoc-tag-v1.0/verif/tb/tests/minisoc_base_test.sv

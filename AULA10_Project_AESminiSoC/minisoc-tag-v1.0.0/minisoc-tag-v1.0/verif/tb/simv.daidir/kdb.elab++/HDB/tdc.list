@@ -18,10 +18,12 @@
 ./agents/rst_agent/rst_driver.sv
 ./agents/rst_agent/rst_if.sv
 ./agents/rst_agent/rst_item.sv
+./agents/rst_agent/rst_monitor.sv
 ./agents/rst_agent/rst_pkg.sv
 ./agents/rst_agent/rst_sequencer.sv
 ./env/env_pkg.sv
 ./env/minisoc_env.sv
+./sequences/minisoc_clock_seq.sv
 ./sequences/minisoc_reset_seq.sv
 ./sequences/seq_pkg.sv
 ./tests/minisoc_base_test.sv

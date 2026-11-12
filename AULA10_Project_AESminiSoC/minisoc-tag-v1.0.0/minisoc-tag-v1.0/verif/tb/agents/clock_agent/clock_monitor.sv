@@ -1,6 +1,5 @@
 
 
-
 class clock_monitor extends uvm_monitor;
 `uvm_component_utils(clock_monitor)
 
@@ -14,16 +13,14 @@ function new(string name= "clock_monitor", uvm_component parent = null);
 
 endfunction
 
-function void build_phase(uvm_phase phase);
-   super.build_phase(phase);
-    if (!uvm_config_db#(virtual clock_if)::get(this, "", "vif", vif)) begin
-      `uvm_fatal("CLK_MON", "Não foi possível obter a interface virtual 'clock_if' do uvm_config_db")
-    end
-endfunction
-
  task run_phase(uvm_phase phase);
     time t_rise_clk_1, t_rise_clk_2;
     clock_item item;
+
+// Checagem defensiva: garante que o agente conectou a interface
+    if (vif == null) begin
+      `uvm_fatal("CLK_MON", "Interface virtual 'clock_if' não foi conectada pelo clock_agent!")
+    end
 
     // Aguarda e mede o período do primeiro ciclo de clk (2 GHz)
     @(posedge vif.clk);

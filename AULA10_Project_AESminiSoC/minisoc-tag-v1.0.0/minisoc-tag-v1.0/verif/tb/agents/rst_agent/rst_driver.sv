@@ -3,25 +3,17 @@ class rst_driver extends uvm_driver#(rst_item);
 `uvm_component_utils(rst_driver)
 
 virtual rst_if vif;
-rst_agent_config cfg;
 
 function new(string name = "rst_driver", uvm_component parent = null);
     super.new(name, parent);
 endfunction
 
-function void build_phase(uvm_phase phase);
-    super.build_phase(phase);
-    if (!uvm_config_db#(virtual rst_if)::get(this, "", "vif", vif)) begin
-      `uvm_fatal("RST_DRV", "Não foi possível obter a interface virtual 'rst_if' do uvm_config_db")
-    end
-
-    if (!uvm_config_db#(rst_agent_config)::get(this, "", "cfg", cfg)) begin
-      cfg = rst_agent_config::type_id::create("cfg");
-    end
-endfunction
-
 task run_phase(uvm_phase phase);
     rst_item item;
+   // Checagem defensiva: garante que o agente conectou a interface
+    if (vif == null) begin
+      `uvm_fatal("RST_DRV", "Interface virtual 'rst_if' não foi conectada pelo rst_agent!")
+    end
 
     // Garante que liga em reset
     vif.rst_n = 1'b0;

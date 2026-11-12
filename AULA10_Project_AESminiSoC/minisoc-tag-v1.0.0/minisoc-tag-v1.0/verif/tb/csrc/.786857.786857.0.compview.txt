@@ -1,11 +1,11 @@
-{"vcs1":{"timestamp_begin":1793673885.754111682, "rt":12.20, "ut":12.51, "st":1.02}}
-{"vcselab":{"timestamp_begin":1793673898.137603131, "rt":0.59, "ut":0.38, "st":0.15}}
-{"link":{"timestamp_begin":1793673898.855786601, "rt":1.51, "ut":1.01, "st":0.47}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1793673884.147607394}
-{"VCS_COMP_START_TIME": 1793673884.147607394}
-{"VCS_COMP_END_TIME": 1793673900.746846744}
-{"elabcom":{"timestamp_begin":1793673888.916296326,"rt":0.61, "ut":0.56, "st":0.16}}
+{"vcs1":{"timestamp_begin":1794424332.412234655, "rt":12.08, "ut":12.57, "st":0.82}}
+{"vcselab":{"timestamp_begin":1794424344.679850354, "rt":0.58, "ut":0.37, "st":0.16}}
+{"link":{"timestamp_begin":1794424345.384490644, "rt":1.48, "ut":1.04, "st":0.42}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1794424330.860223483}
+{"VCS_COMP_START_TIME": 1794424330.860223483}
+{"VCS_COMP_END_TIME": 1794424347.206237050}
+{"elabcom":{"timestamp_begin":1794424335.524146349,"rt":0.58, "ut":0.55, "st":0.14}}
 {"VCS_USER_OPTIONS": "-full64 -sverilog -ntb_opts uvm -timescale=1ps/1ps -debug_access+all -kdb -l vcs_compile.log +incdir+./agents/clock_agent +incdir+./agents/rst_agent +incdir+./env +incdir+./sequences +incdir+./tests ../../frontend/rtl/minisoc_aes/minisoc_aes_dp.sv ../../frontend/rtl/minisoc_aes/minisoc_aes_key_exp.sv ../../frontend/rtl/minisoc_aes/minisoc_aes_top.sv ../../frontend/rtl/minisoc_mem/minisoc_memory.sv ../../frontend/rtl/minisoc_pll/minisoc_pll_mock.sv ../../frontend/rtl/minisoc_spi/minisoc_spi.sv ../../frontend/rtl/minisoc_top.sv ./agents/clock_agent/clock_if.sv ./agents/clock_agent/clock_pkg.sv ./agents/rst_agent/rst_if.sv ./agents/rst_agent/rst_pkg.sv ./env/env_pkg.sv ./sequences/seq_pkg.sv ./tests/test_pkg.sv ./top_tb.sv"}
 {"kdb": {"elabcom_name":"<Kdbresolver>", "log_dir":"simv.daidir/kdbresolverLog"}}
-{"vcs1": {"peak_mem": 576492}}
-{"vcselab": {"peak_mem": 267700}}
+{"vcs1": {"peak_mem": 576652}}
+{"vcselab": {"peak_mem": 267696}}
